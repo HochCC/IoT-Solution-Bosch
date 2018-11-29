@@ -1,0 +1,295 @@
+﻿@model IEnumerable<Connecting.Models.Car>
+
+<div class="modal fade" id="defaultModal0" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="defaultModalLabel">QR Code Scan</h4>
+            </div>
+            <div class="modal-body">
+                Please choose the status and click, Scan the QRcode for updating
+                <video id="2" autoplay style="width:100%; height:100%; object-fit: fill"></video>
+            </div>
+            <div class="modal-footer">
+                <button id="create" type="button" class="btn btn-link waves-effect">Scan</button>
+                <button id="stop" type="button" class="btn btn-link waves-effect" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="card">
+            <div class="header">
+                <div class="row clearfix">
+                    <div class="col-xs-12 col-sm-6">
+                        <h2>Temperature</h2>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="body">
+                    <div id="main1" class="dashboard-flot-chart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="card">
+            <div class="header">
+                <div class="row clearfix">
+                    <div class="col-xs-12 col-sm-6">
+                        <h2>Humidity</h2>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="body">
+                    <div id="main2" class="dashboard-flot-chart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section MyScripts { 
+    <script type="text/javascript"> 
+        var myChart3 = echarts.init(document.getElementById('main1')); 
+        // 初始 option
+        option = {
+            grid: {
+                left: '33',
+                right: '33',
+                bottom: '30'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross',
+                    label: {
+                        backgroundColor: '#283b56'
+                    }
+                }
+            },
+            legend: {
+                data: ['Temperature']
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    dataView: { readOnly: false },
+                }
+            },
+            dataZoom: {
+                show: false,
+                start: 0,
+                end: 100
+            },
+            xAxis: [
+                {
+                    show: true,
+                    gridIndex: 0,
+                    type: 'category',
+                    boundaryGap: true,
+                    axisLine: { onZero: false },
+                    boundaryGap: false,
+                    data: (function () {
+                        var now = new Date();
+                        var res = [];
+                        var len = 15;
+                        while (len--) {
+                            res.unshift(now.toLocaleTimeString().replace(/^\D*/, ''));
+                            now = new Date(now - 2000);
+                        }
+                        return res;
+                    })()
+                },
+                {
+                    show: false,
+                    gridIndex: 0,
+                    type: 'category',
+                    boundaryGap: false,
+                    data: (function () {
+                        var res = [];
+                        var len = 15;
+                        while (len--) {
+                            res.push(15 - len - 1);
+                        }
+                        return res;
+                    })()
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                    gridIndex: 0,
+                    scale: true,
+                    splitLine: {
+                        show: false
+                    },
+                    name: 'Temperature',
+                    max: 50,
+                    min: 0,
+                }
+            ],
+            series: [
+                {
+                    name: 'Temperature',
+                    type: 'line',
+                    data: (function () {
+                        var res = [];
+                        var len = 0;
+                        while (len < 15) {
+                            res.push((Math.random() * 10 + 50).toFixed(1));
+                            len++;
+                        }
+                        return res;
+                    })()
+                }
+            ]
+        };
+
+        var mypush = $.connection.myHub2;
+
+        mypush.client.sendTest2 = function (array) {
+            var data0 = option.series[0].data;
+            data0.shift();
+            data0.push(array);
+            console.log(data0);
+            axisData = (new Date()).toLocaleTimeString().replace(/^\D*/, '');
+            option.xAxis[0].data.shift();
+            option.xAxis[0].data.push(axisData);
+            option.xAxis[1].data.shift();
+            option.xAxis[1].data.push(myChart3.count++);
+            myChart3.setOption(option);
+        };
+        $.connection.hub.start();
+
+        var myChart4 = echarts.init(document.getElementById('main2'));
+
+        // 初始 option
+        option2 = {
+            grid: {
+                left: '33',
+                right: '33',
+                bottom: '30'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross',
+                    label: {
+                        backgroundColor: '#283b56'
+                    }
+                }
+            },
+            legend: {
+                data: ['Humidity']
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    dataView: { readOnly: false },
+                }
+            },
+            dataZoom: {
+                show: false,
+                start: 0,
+                end: 100
+            },
+            xAxis: [
+                {
+                    show: true,
+                    gridIndex: 0,
+                    type: 'category',
+                    boundaryGap: true,
+                    axisLine: { onZero: false },
+                    boundaryGap: false,
+                    data: (function () {
+                        var now = new Date();
+                        var res = [];
+                        var len = 15;
+                        while (len--) {
+                            res.unshift(now.toLocaleTimeString().replace(/^\D*/, ''));
+                            now = new Date(now - 2000);
+                        }
+                        return res;
+                    })()
+                },
+                {
+                    show: false,
+                    gridIndex: 0,
+                    type: 'category',
+                    boundaryGap: false,
+                    data: (function () {
+                        var res = [];
+                        var len = 15;
+                        while (len--) {
+                            res.push(15 - len - 1);
+                        }
+                        return res;
+                    })()
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                    gridIndex: 0,
+                    scale: true,
+                    splitLine: {
+                        show: false
+                    },
+                    name: 'Humidity',
+                    max: 100,
+                    min: 0,
+                }
+            ],
+            series: [
+                {
+                    name: 'Humidity',
+                    type: 'line',
+                    data: (function () {
+                        var res = [];
+                        var len = 0;
+                        while (len < 15) {
+                            res.push((Math.random() * 10 + 50).toFixed(1));
+                            len++;
+                        }
+                        return res;
+                    })()
+                }
+            ]
+        };
+
+        var mypush2 = $.connection.myHub2;
+
+        mypush2.client.sendTest1 = function (array) {
+            var data02 = option2.series[0].data;
+            data02.shift();
+            data02.push(array);
+            console.log(data02);
+            axisData2 = (new Date()).toLocaleTimeString().replace(/^\D*/, '');
+            option2.xAxis[0].data.shift();
+            option2.xAxis[0].data.push(axisData2);
+            option2.xAxis[1].data.shift();
+            option2.xAxis[1].data.push(myChart4.count++);
+            myChart4.setOption(option2);
+        };
+        $.connection.hub.start();
+
+        var charts = [];
+        charts.push(myChart3);
+        charts.push(myChart4);
+        window.onresize = function () {
+            for (var i = 0; i < charts.length; i++) {
+                charts[i].resize();
+            }
+        };
+    </script> 
+}
+ 

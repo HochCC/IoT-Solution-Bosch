@@ -1,0 +1,58 @@
+﻿@model Connecting.Models.Pool
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>Pool</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Number)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Number)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Location_x)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Location_x)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Location_y)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Location_y)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Broken)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Broken)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Pools_id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

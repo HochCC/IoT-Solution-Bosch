@@ -1,0 +1,62 @@
+﻿@model Connecting.Models.TurnoverBox0
+
+@{
+    ViewBag.Title = "Details";
+} 
+
+<div class="row clearfix">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="card">
+            <div class="header">
+                <div class="row clearfix">
+                    <div class="col-xs-12 col-sm-6">
+                        <h2>Turnoverboxes</h2>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="body">
+                    <div>
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Status)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Status)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Time)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Time)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Enduser)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Enduser)
+                            </dd> 
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Pallet_id)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Pallet_id)
+                            </dd> 
+                        </dl>
+                    </div>
+                    <p>
+                        @Html.ActionLink("Edit", "Edit", new { id = Model.Turnoverbox_id }) |
+                        @Html.ActionLink("Back to List", "Index")
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

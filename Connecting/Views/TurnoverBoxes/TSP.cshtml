@@ -1,0 +1,97 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>IoT Solution</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+    <link href="../../plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="../../plugins/node-waves/waves.css" rel="stylesheet" />
+    <link href="../../plugins/animate-css/animate.css" rel="stylesheet" />
+    <link href="../../plugins/morrisjs/morris.css" rel="stylesheet" />
+    <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="../../css/themes/all-themes.css" rel="stylesheet" />
+    <link href="../../point.css" rel="stylesheet" />
+    <script type="text/javascript"
+            src="http://api.map.baidu.com/api?v=2.0&ak=ynXgni7si1bzX9kPMxnU2G0xr3giBSoB"></script>
+
+</head>
+
+<body class="theme-teal"> 
+    <!-- Top Bar -->
+    <nav class="navbar" style="height: 71px">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+                <a href="javascript:void(0);" class="bars"></a>
+                <a class="navbar-brand" href="http://connecting20180812.chinacloudsites.cn" style="font-size:24px">Turnover Management Cloud</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                 
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+        <div  >
+            <div id="control_bottons" class="btn-group row">
+                <button id="addRandom_btn" class="btn">Add 50 Random Points</button>
+                <button id="start_btn" class="btn">Start/Restart</button>
+                <button id="stop_btn" class="btn">Stop/Continue</button>
+                <button id="clear_btn" class="btn">Clear All</button>
+            </div>
+            <div class="row">
+                <span id="status" class="show-grid"></span>
+            </div>
+            <canvas id="canvas"
+                    width="1470" height="660"
+                    style="border:1px solid; background-image:url(../../images/MAP2.png);">
+                your browser sucks
+            </canvas>
+        </div> 
+
+    <script src="../../plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../Scripts/main.js"></script>
+    <script type="text/javascript" src="../../Scripts/algorithm.js"></script>
+    <script type="text/javascript" src="../../Scripts/utils.js"></script>
+    <script type="text/javascript" src="../../Scripts/data.js"></script>
+    <script src="../../Scripts/qcode-decoder.min.js"></script>
+    <!-- Jquery Core Js -->
+    <!-- ec -->
+    <!-- Bootstrap Core Js -->
+    <script src="../../plugins/bootstrap/js/bootstrap.js"></script>
+    <!-- Select Plugin Js -->
+    <script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
+    <!-- Slimscroll Plugin Js -->
+    <script src="../../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <!-- Waves Effect Plugin Js -->
+    <script src="../../plugins/node-waves/waves.js"></script>
+    <!-- Jquery CountTo Plugin Js -->
+    <script src="../../plugins/jquery-countto/jquery.countTo.js"></script>
+    <!-- Morris Plugin Js -->
+    <script src="../../plugins/raphael/raphael.min.js"></script>
+    <!-- ChartJs -->
+    <script src="../../plugins/chartjs/Chart.bundle.js"></script>
+    <!-- Flot Charts Plugin Js -->
+    <!-- Custom Js -->
+    <script src="../../js/admin.js"></script>
+    <script src="../../js/pages/ui/modals.js"></script>
+    <!-- Demo Js -->
+    <script src="../../js/demo.js"></script>
+
+    <!-- Editable Table Plugin Js -->
+    <!-- qrcode -->
+    <script src="../../Scripts/qrcode.js"></script>
+    <!-- Autosize Plugin Js -->
+    <script src="../../plugins/autosize/autosize.js"></script> 
+
+</body>
+</html> 

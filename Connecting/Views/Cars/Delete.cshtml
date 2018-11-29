@@ -1,0 +1,107 @@
+﻿@model Connecting.Models.Car
+ 
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>TurnoverBox</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lfrom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lfrom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location_x)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location_x)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location_y)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location_y)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Temperature)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Temperature)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Humidity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Humidity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Speed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Speed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Car_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Car_id)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
+
+ 

@@ -1,0 +1,359 @@
+﻿<!-- Default Size -->
+<div class="modal fade" id="defaultModal0" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="defaultModalLabel">QR Code Scan</h4>
+            </div>
+            <div class="modal-body">
+                Please choose the status and click, Scan the QRcode for updating
+                <video id="2" autoplay style="width:100%; height:100%; object-fit: fill"></video>
+            </div>
+            <div class="modal-footer">
+                <button id="create" type="button" class="btn btn-link waves-effect">Scan</button>
+                <button id="stop" type="button" class="btn btn-link waves-effect" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="card">
+            <div class="header">
+                <h2>Cloud Storage Planning</h2>
+                <div class="form-group">
+                    <div class="form-line">
+                        <input type="text" class="form-control" placeholder="clusterNumber" />
+                    </div>
+                </div>
+                <ul class="header-dropdown m-r--5">
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a href="javascript:void(0);">Action</a></li>
+                            <li><a href="javascript:void(0);">Another action</a></li>
+                            <li><a href="javascript:void(0);">Something else here</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div id="main" class="dashboard-flot-chart" style="height:600px"></div>
+        </div>
+    </div>
+</div>
+
+
+
+@section MyScripts {
+    <script src="../../Scripts/ecStat.min.js"></script>
+    <script src="../../Scripts/ecStat.js"></script>
+    <script type="text/javascript">
+        var myChart1 = echarts.init(document.getElementById('main'));
+
+        var data = [
+            [3.275154, 2.957587],
+            [-3.344465, 2.603513],
+            [0.355083, -3.376585],
+            [1.852435, 3.547351],
+            [-2.078973, 2.552013],
+            [-0.993756, -0.884433],
+            [2.682252, 4.007573],
+            [-3.087776, 2.878713],
+            [-1.565978, -1.256985],
+            [2.441611, 0.444826],
+            [-0.659487, 3.111284],
+            [-0.459601, -2.618005],
+            [2.17768, 2.387793],
+            [-2.920969, 2.917485],
+            [-0.028814, -4.168078],
+            [3.625746, 2.119041],
+            [-3.912363, 1.325108],
+            [-0.551694, -2.814223],
+            [2.855808, 3.483301],
+            [-3.594448, 2.856651],
+            [0.421993, -2.372646],
+            [1.650821, 3.407572],
+            [-2.082902, 3.384412],
+            [-0.718809, -2.492514],
+            [4.513623, 3.841029],
+            [-4.822011, 4.607049],
+            [-0.656297, -1.449872],
+            [1.919901, 4.439368],
+            [-3.287749, 3.918836],
+            [-1.576936, -2.977622],
+            [3.598143, 1.97597],
+            [-3.977329, 4.900932],
+            [-1.79108, -2.184517],
+            [3.914654, 3.559303],
+            [-1.910108, 4.166946],
+            [-1.226597, -3.317889],
+            [1.148946, 3.345138],
+            [-2.113864, 3.548172],
+            [0.845762, -3.589788],
+            [2.629062, 3.535831],
+            [-1.640717, 2.990517],
+            [-1.881012, -2.485405],
+            [4.606999, 3.510312],
+            [-4.366462, 4.023316],
+            [0.765015, -3.00127],
+            [3.121904, 2.173988],
+            [-4.025139, 4.65231],
+            [-0.559558, -3.840539],
+            [4.376754, 4.863579],
+            [-1.874308, 4.032237],
+            [-0.089337, -3.026809],
+            [3.997787, 2.518662],
+            [-3.082978, 2.884822],
+            [0.845235, -3.454465],
+            [1.327224, 3.358778],
+            [-2.889949, 3.596178],
+            [-0.966018, -2.839827],
+            [2.960769, 3.079555],
+            [-3.275518, 1.577068],
+            [0.639276, -3.41284],
+
+            [0.165015, -4.00127],
+            [2.121904, 3.173988],
+            [-2.025139, 3.65231],
+            [-1.559558, -2.840539],
+            [3.376754, 3.863579],
+            [-3.874308, 5.032237],
+            [-4.089337, -2.026809],
+            [2.997787, 3.518662],
+            [-1.082978, 3.884822],
+            [1.845235, -1.454465],
+            [2.327224, 2.358778],
+            [-3.889949, 5.596178],
+            [-2.966018, -3.839827],
+            [4.960769, 1.079555],
+            [-1.275518, 2.577068],
+            [2.639276, -1.41284],
+
+            [0.639276, -1.52284],
+            [-2.639276, -4.52284],
+            [-2.439276, -4.12284],
+            [-2.139276, -4.22284],
+            [-2.239276, -4.32284],
+            [-2.339276, -4.42284],
+
+            [1.263927, 0.11284],
+            [1.363927, 1.11284],
+            [1.213927, 2.11284],
+            [1.463927, 2.61284],
+            [2.163927, 1.51284],
+            [0.63927, 1.21284],
+        ];
+
+        var clusterNumber = 10;
+        var step = ecStat.clustering.hierarchicalKMeans(data, clusterNumber, true);
+        var result;
+
+        option = {
+            timeline: {
+                top: 'center',
+                right: 35,
+                height: 300,
+                width: 10,
+                inverse: true,
+                playInterval: 2500,
+                symbol: 'none',
+                orient: 'vertical',
+                axisType: 'category',
+                autoPlay: false,
+                label: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data: []
+            },
+            baseOption: {
+                xAxis: {
+                    show: false,
+                    type: 'value'
+                },
+                yAxis: {
+                    show: false,
+                    type: 'value'
+                },
+                bmap: {
+                    center: [105.114129, 28.240339],
+                    zoom: 6,
+                    roam: false,
+                    mapStyle: {
+                        styleJson: [{
+                            'featureType': 'water',
+                            'elementType': 'all',
+                            'stylers': {
+                                'color': '#d1d1d1'
+                            }
+                        }, {
+                            'featureType': 'land',
+                            'elementType': 'all',
+                            'stylers': {
+                                'color': '#f3f3f3'
+                            }
+                        }, {
+                            'featureType': 'railway',
+                            'elementType': 'all',
+                            'stylers': {
+                                'visibility': 'off'
+                            }
+                        }, {
+                            'featureType': 'highway',
+                            'elementType': 'all',
+                            'stylers': {
+                                'color': '#fdfdfd'
+                            }
+                        }, {
+                            'featureType': 'highway',
+                            'elementType': 'labels',
+                            'stylers': {
+                                'visibility': 'off'
+                            }
+                        }, {
+                            'featureType': 'arterial',
+                            'elementType': 'geometry',
+                            'stylers': {
+                                'color': '#fefefe'
+                            }
+                        }, {
+                            'featureType': 'arterial',
+                            'elementType': 'geometry.fill',
+                            'stylers': {
+                                'color': '#fefefe'
+                            }
+                        }, {
+                            'featureType': 'poi',
+                            'elementType': 'all',
+                            'stylers': {
+                                'visibility': 'off'
+                            }
+                        }, {
+                            'featureType': 'green',
+                            'elementType': 'all',
+                            'stylers': {
+                                'visibility': 'off'
+                            }
+                        }, {
+                            'featureType': 'subway',
+                            'elementType': 'all',
+                            'stylers': {
+                                'visibility': 'off'
+                            }
+                        }, {
+                            'featureType': 'manmade',
+                            'elementType': 'all',
+                            'stylers': {
+                                'color': '#d1d1d1'
+                            }
+                        }, {
+                            'featureType': 'local',
+                            'elementType': 'all',
+                            'stylers': {
+                                'color': '#d1d1d1'
+                            }
+                        }, {
+                            'featureType': 'arterial',
+                            'elementType': 'labels',
+                            'stylers': {
+                                'visibility': 'off'
+                            }
+                        }, {
+                            'featureType': 'boundary',
+                            'elementType': 'all',
+                            'stylers': {
+                                'color': '#fefefe'
+                            }
+                        }, {
+                            'featureType': 'building',
+                            'elementType': 'all',
+                            'stylers': {
+                                'color': '#d1d1d1'
+                            }
+                        }, {
+                            'featureType': 'label',
+                            'elementType': 'labels.text.fill',
+                            'stylers': {
+                                'color': '#999999'
+                            }
+                        }]
+                    }
+                },
+                series: [{
+                    type: 'scatter'
+                }]
+            },
+            options: []
+        };
+
+
+        for (var i = 0; !(result = step.next()).isEnd; i++) {
+
+            option.options.push(getOption(result, clusterNumber));
+            option.timeline.data.push(i + '');
+
+        }
+
+        function getOption(result, k) {
+            var clusterAssment = result.clusterAssment;
+            var centroids = result.centroids;
+            var ptsInCluster = result.pointsInCluster;
+            var color = ['#2f4554', '#c23531', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3'];
+            var series = [];
+            for (i = 0; i < k; i++) {
+                series.push({
+                    name: 'scatter' + i,
+                    type: 'scatter',
+                    animation: false,
+                    data: ptsInCluster[i],
+                    markPoint: {
+                        symbolSize: 32,
+                        label: {
+                            normal: {
+                                show: false
+                            },
+                            emphasis: {
+                                show: true,
+                                position: 'top',
+                                formatter: function (params) {
+                                    return Math.round(params.data.coord[0] * 100) / 100 + '  ' +
+                                        Math.round(params.data.coord[1] * 100) / 100 + ' ';
+                                },
+                                textStyle: {
+                                    color: '#000'
+                                }
+                            }
+                        },
+                        itemStyle: {
+                            normal: {
+                                opacity: 0.9
+                            }
+                        },
+                        data: [{
+                            coord: centroids[i]
+                        }]
+                    }
+                });
+            }
+
+            return {
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'cross'
+                    }
+                },
+                series: series,
+                color: color
+            };
+        }
+
+        myChart1.setOption(option);
+        window.onresize = resize(myChart1);
+    </script>
+}
+ 

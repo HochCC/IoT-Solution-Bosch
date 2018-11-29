@@ -1,0 +1,292 @@
+﻿@model IEnumerable<Connecting.Models.TurnoverBox0>
+
+<!-- Default Size -->
+<div class="modal fade" id="defaultModal0" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="defaultModalLabel">QR Code Scan</h4>
+            </div>
+            <div class="modal-body">
+                Please choose the status and click, Scan the QRcode for updating
+                <video id="2" autoplay style="width:100%; height:100%; object-fit: fill"></video>
+            </div>
+            <div class="modal-footer">
+                <button id="create" type="button" class="btn btn-link waves-effect">Scan</button>
+                <button id="stop" type="button" class="btn btn-link waves-effect" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+        <div class="card">
+            <div class="header">
+                <h2>BROWSER USAGE</h2>
+                <ul class="header-dropdown m-r--5">
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a href="javascript:void(0);">Action</a></li>
+                            <li><a href="javascript:void(0);">Another action</a></li>
+                            <li><a href="javascript:void(0);">Something else here</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="body">
+                <div id="main0" class="dashboard-flot-chart"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+        <div class="card">
+            <div class="header">
+                <div class="row clearfix">
+                    <div class="col-xs-12 col-sm-6">
+                        <h2>Truck</h2>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="body">
+                    <div id="main2" class="dashboard-flot-chart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row clearfix">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="card">
+                <div class="header">
+                    <div class="row clearfix">
+                        <div class="col-xs-12 col-sm-6">
+                            <h2>Turnoverboxes</h2>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="body">
+                        <div class="table-responsive">
+                            @Html.ActionLink("Create New", "Create")
+                            <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Turnoverbox_id)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Status)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Time)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Enduser)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Pallet_id)
+                                    </th>
+                                    <th></th>
+                                </tr>
+
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Turnoverbox_id)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Status)
+                                        </td>
+                                        @if ((DateTime.Now - item.Time.AsDateTime()).Days > 10)
+                                        {
+                                            <td class="danger">@Html.DisplayFor(model => item.Time)</td>
+                                        }
+                                        else
+                                        {
+                                            <td>@Html.DisplayFor(model => item.Time)</td>
+                                        }
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Enduser)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Pallet_id)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.Turnoverbox_id }) |
+                                            @Html.ActionLink("Details", "Details", new { id = item.Turnoverbox_id }) |
+                                            @Html.ActionLink("Location", "onepoint", new { id = item.Turnoverbox_id }) |
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.Turnoverbox_id })
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section MyScripts {
+    <script type="text/javascript">
+        var myChart = echarts.init(document.getElementById('main0'));
+        // 指定图表的配置项和数据
+        var XZ=new Array();
+        var YZ=new Array();
+        var array = @Html.Raw( Json.Encode( (Model).Select(m=> new
+               {
+                   value = m.Status,
+                   name = m.Status
+               })
+        )  );
+
+        for (i in array) {
+            XZ[i] =  array[i].value;
+        }
+
+        var _res = [];
+        XZ.sort();
+        for (var i = 0; i < XZ.length;) {
+            var count = 0;
+            for (var j = i; j < XZ.length; j++) {
+                if (XZ[i] == XZ[j]) {
+                    count++;
+                }
+            }
+            _res.push([count, XZ[i]]);
+            i += count;
+        }
+        //console.log(_res);
+
+        option = {
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                x: 'left',
+                data: ['In use', 'Free', 'Broken', 'Over cyclelife', 'Repairing']
+            },
+
+            series: [
+                {
+                    name: 'Turnover Boxes',
+                    type: 'pie',
+                    radius: ['70%', '93%'],
+                    avoidLabelOverlap: false,
+                    label: {
+                        normal: {
+                            show: false,
+                            position: 'center'
+                        },
+                        emphasis: {
+                            show: true,
+                            textStyle: {
+                                fontSize: '30',
+                                fontWeight: 'bold'
+                            }
+                        }
+                    },
+                    labelLine: {
+                        normal: {
+                            show: false
+                        }
+                    },
+                    data: _res
+                }
+            ]
+        }; 
+        myChart.setOption(option); 
+        window.onresize = myChart.resize;
+    </script>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main2'));
+
+        // 指定图表的配置项和数据
+        var XZ=new Array();
+        var YZ=new Array();
+        var array = @Html.Raw( Json.Encode( (Model).Select(m=> new
+               {
+                   //id = m.Status,
+                   name = m.Pallet_id
+               })
+        )  );
+        for (i in array) {
+            XZ[i] = array[i].name;
+        }
+
+        var X = [];
+        var Y = [];
+        XZ.sort();
+        for (var i = 0; i < XZ.length;) {
+            var count = 0;
+            for (var j = i; j < XZ.length; j++) {
+                if (XZ[i] == XZ[j]) {
+                    count++;
+                }
+            }
+            X.push(XZ[i]);
+            Y.push(count);
+            i += count;
+        }
+        //console.log(_res);
+
+        option = {
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    magicType: { show: true, type: ['line', 'bar'] }
+                }
+            },
+            calculable: true,
+            xAxis: [
+                {
+                    data: X
+                }
+            ],
+            yAxis: [
+                {
+                    show: false,
+                    type: 'value'
+                }
+            ],
+            series: [
+                {
+                    name: 'Turnoverbox Number',
+                    type: 'bar',
+                    data: Y,
+                    markPoint: {
+                        data: [
+                            { name: 'max', type: 'max' },
+                            { name: 'min', type: 'min' }
+                        ]
+                    },
+                    markLine: {
+                        data: [
+                            { type: 'average', name: 'average' }
+                        ]
+                    }
+                }
+            ]
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+        window.onresize = myChart.resize;
+    </script>
+}

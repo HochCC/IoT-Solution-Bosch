@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAE4yzdZaJxkqfmsMbBVNpQAAAAAACAAAAAAADZgAAwAAAABAAAADsIYUtv8hq/H+8reiIy2liAAAAAASAAACgAAAAEAAAAHyF2iO/HOUl4LGd72v/zcyAAAAANn9eXRNCkjzirGsHTprso/FX3S5OEwV9PdGrBMI5quz0EDckkCMU0QQb0+PpAW89P7qdGTbq9/jmMH6EH4k4J/yRoi0FBjOxSNvHJ2VfgHnnj/ZYQ9e/UjyduRcScPonucbWM2i59P4MrpzlJVxOKug+2wR4OHsg3zgZRxUKn6gUAAAAs9NvlDHLkvP+zQdGT7/U5FtOS1s=</EncryptedPassword>
+  </PropertyGroup>
+  <ItemGroup>
+    <AzureDBConnectionStrings Include="Data Source=tcp:connecting20180714v3dbserver.database.chinacloudapi.cn,1433;Initial Catalog=Connecting20180714v3_db1;User Id=sqladmin@connecting20180714v3dbserver;Password=WXJWXJwang123" />
+    <AzureDBConnectionStrings Include="Data Source=tcp:connecting20180714v3dbserver.database.chinacloudapi.cn,1433;Initial Catalog=Connecting20180714v3_db2;User Id=sqladmin@connecting20180714v3dbserver;Password=WXJWXJwang123" />
+    <AzureDBConnectionStrings Include="Data Source=tcp:connecting20180714v3dbserver.database.chinacloudapi.cn,1433;Initial Catalog=Connecting20180714v3_db3;User Id=sqladmin@connecting20180714v3dbserver;Password=WXJWXJwang123" />
+    <AzureDBConnectionStrings Include="Data Source=tcp:connecting20180714v3dbserver.database.chinacloudapi.cn,1433;Initial Catalog=Connecting20180714v3_db;User Id=sqladmin@connecting20180714v3dbserver;Password=WXJWXJwang123" />
+  </ItemGroup>
+</Project>

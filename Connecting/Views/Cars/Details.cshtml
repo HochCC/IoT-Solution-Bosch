@@ -1,0 +1,90 @@
+﻿@model Connecting.Models.Car
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>Car</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Location_x)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Location_x)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Location_y)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Location_y)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Temperature)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Temperature)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Humidity)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Humidity)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Lfrom)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Lfrom)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Lto)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Lto)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Speed)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Speed)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Time)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Time)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Car_id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

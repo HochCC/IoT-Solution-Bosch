@@ -1,0 +1,222 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <!-- Jquery Core Js -->
+    <script src="../../plugins/jquery/jquery.min.js"></script>
+
+    <script src="../../Scripts/echarts/echarts.js"></script>
+    <script src="../../Scripts/echarts/echarts.min.js"></script>
+
+    <script src="~/Scripts/jquery.signalR-2.3.0.min.js"></script>
+    <script src="~/signalr/hubs"></script> 
+    <title>jie</title>
+</head>
+<body>
+    <div>
+        <div id="test" style="width: 600px;height:400px;"></div>
+        <div id="goes" style="width: 600px;height:400px;"></div>
+        <div id="test2" style="width: 600px;height:400px;"></div>
+        <script type="text/javascript">
+            $(function () {
+
+                var myChart1 = echarts.init(document.getElementById('test'));
+                myChart1.setOption({
+                    title: {
+                        text: '实时数据加载示例'
+                    },
+                    tooltip: {},
+                    legend: {
+                        data: ['销量']
+                    },
+                    xAxis: {
+                        data: ["衬衫", "羊毛", "雪纺", "裤子", "高跟", "袜子", "袖子", "领子", "袜子", "脑子"]
+                    },
+                    yAxis: {},
+                    series: [{
+                        name: '销量',
+                        type: 'line',
+                        data: []
+                    }]
+                });
+
+                var mypush = $.connection.myHub;
+
+                mypush.client.sendTest1 = function (array) {
+                    myChart1.setOption({
+                        series: [{
+                            data: array
+                        }]
+                    });
+                //    console.log(array);
+                };
+
+                $.connection.hub.start();
+
+            });
+        </script>
+        <script type="text/javascript">
+            $(function () {
+
+                var myChart1 = echarts.init(document.getElementById('test2'));
+                myChart1.setOption({
+                    title: {
+                        text: '实时数据加载示例'
+                    },
+                    tooltip: {},
+                    legend: {
+                        data: ['销量']
+                    },
+                    xAxis: {
+                        data: ["衬衫"]
+                    },
+                    yAxis: {},
+                    series: [{
+                        name: '销量',
+                        type: 'line',
+                        data: []
+                    }]
+                });
+
+                var mypush = $.connection.myHub2;
+
+                mypush.client.sendTest2 = function (array) {
+                    myChart1.setOption({
+                        series: [{
+                            data: array
+                        }]
+                    });
+                    console.log(array);
+                };
+
+                $.connection.hub.start();
+
+            });
+        </script>
+    </div>
+</body>
+</html>
+
+<script type="text/javascript">
+    $(function () {
+
+        var myChart1 = echarts.init(document.getElementById('goes'));
+
+        // 初始 option
+        option = {
+            grid: {
+                left: '33',
+                right: '33',
+                bottom: '30'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross',
+                    label: {
+                        backgroundColor: '#283b56'
+                    }
+                }
+            },
+            legend: {
+                data: ['in Use Pallet', 'in Use Tb']
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    dataView: { readOnly: false },
+                }
+            },
+            dataZoom: {
+                show: false,
+                start: 0,
+                end: 100
+            },
+            xAxis: [
+                {
+                    show: true,
+                    gridIndex: 0,
+                    type: 'category',
+                    boundaryGap: true,
+                    axisLine: { onZero: false },
+                    boundaryGap: false,
+                    data: (function () {
+                        var now = new Date();
+                        var res = [];
+                        var len = 15;
+                        while (len--) {
+                            res.unshift(now.toLocaleTimeString().replace(/^\D*/, ''));
+                            now = new Date(now - 2000);
+                        }
+                        return res;
+                    })()
+                },
+                {
+                    show: false,
+                    gridIndex: 0,
+                    type: 'category',
+                    boundaryGap: false,
+                    data: (function () {
+                        var res = [];
+                        var len = 15;
+                        while (len--) {
+                            res.push(15 - len - 1);
+                        }
+                        return res;
+                    })()
+                }
+            ],
+            yAxis: [ 
+                {
+                    type: 'value',
+                    gridIndex: 0,
+                    scale: true,
+                    splitLine: {
+                        show: false
+                    },
+                    name: 'Number',
+                    max: 100,
+                    min: 0,
+                }
+            ],
+            series: [ 
+                {
+                    name: 'in Use Tb',
+                    type: 'line',
+                    data: (function () {
+                        var res = [];
+                        var len = 0;
+                        while (len < 15) {
+                            res.push((Math.random() * 10 + 50).toFixed(1));
+                            len++;
+                        }
+                        return res;
+                    })()
+                }
+            ]
+        }; 
+
+        var mypush = $.connection.myHub2; 
+
+        mypush.client.sendTest2 = function (array) {
+            var data0 = option.series[0].data;
+            data0.shift();
+            data0.push(array); 
+            console.log(data0);  
+            axisData = (new Date()).toLocaleTimeString().replace(/^\D*/, '');
+            option.xAxis[0].data.shift();
+            option.xAxis[0].data.push(axisData);
+            option.xAxis[1].data.shift();
+            option.xAxis[1].data.push(myChart1.count++);
+            myChart1.setOption(option);
+        };  
+        
+        $.connection.hub.start(); 
+    });
+</script>

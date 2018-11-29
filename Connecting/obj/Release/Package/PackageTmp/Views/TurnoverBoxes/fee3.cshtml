@@ -1,0 +1,568 @@
+﻿
+
+<div class="row clearfix">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="card">
+            <div class="header">
+                <div class="row clearfix">
+                    <div class="col-xs-12 col-sm-6">
+                        <h2>Turnoverbox & Pallet in Use of ZF</h2>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="body">
+                    <div id="main" class="dashboard-flot-chart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="card">
+            <div class="header">
+                <div class="row clearfix">
+                    <div class="col-xs-12 col-sm-6">
+                        <font size="4">Charge for ZF</font>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button onclick="change1()" type="button" class="btn">
+                            Turnover Promoting
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="body">
+                    <div id="main1" class="dashboard-flot-chart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts{
+    <!-- 4line dynamic load -->
+    <script type="text/javascript">
+        //var ramdon = (Math.random() * 10 + 50).toFixed(0);
+        // console.log(ramdon);
+        var c1 = [11.65, 16.47];
+        var c2 = [17.13, 8.45];
+        var c3 = [27.63, 11.18];
+
+        var creditc1;
+        var creditc2;
+        var creditc3;
+
+        if (c1[1] > 15)
+            creditc1 = "Low Credit Company";
+        else if (10 < c1[1] <= 15)
+            creditc1 = "Good Credit Company";
+        else if (c1[1] < 10)
+            creditc1 = "Perfect Credit Company";
+
+        if (c2[1] > 15)
+            creditc2 = "Low Credit Company";
+        else if (10 < c2[1] <= 15)
+            creditc2 = "Good Credit Company";
+        else if (c2[1] < 10)
+            creditc2 = "Perfect Credit Company";
+
+        if (c3[1] > 15)
+            creditc3 = "Low Credit Company";
+        else if (10 < c3[1] <= 15)
+            creditc3 = "Good Credit Company";
+        else if (c3[1] < 10)
+            creditc3 = "Perfect Credit Company";
+
+        var BASISc1 = calculate1(c1[1], c1[0]);
+        var PREIS3 = calculate4(c1[1], c1[0]); // 高报废率, 低使用量  劣质客户---惩罚
+        var PREIS1 = calculate2(c1[1], c1[0]); // 中报废率, 高使用量  稳定客户---优化利润
+        var PREIS2 = calculate3(c1[1], c1[0]); // 低报废率, 中使用量  优质客户---激励周转
+         
+        var preis00 = 3.4;
+        var preis02 = 3.6;
+        var myChart1 = echarts.init(document.getElementById('main'));
+
+        option0 = {
+            grid: {
+                left: '33',
+                right: '39',
+                bottom: '30'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross',
+                    label: {
+                        backgroundColor: '#283b56'
+                    }
+                }
+            },
+            legend: {
+                data: ['in Use Pallet', 'in Use Tb', 'Broken Tb']
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    dataView: { readOnly: false },
+                }
+            },
+            dataZoom: {
+                show: false,
+                start: 0,
+                end: 100
+            },
+            xAxis: [
+                {
+                    show: false,
+                    gridIndex: 0,
+                    type: 'category',
+                    boundaryGap: true,
+                    axisLine: { onZero: false },
+                    boundaryGap: false,
+                    data: (function () {
+                        var now = new Date();
+                        var res = [];
+                        var len = 30;
+                        while (len--) {
+                            res.unshift(now.toLocaleTimeString().replace(/^\D*/, ''));
+                            now = new Date(now - 2000);
+                        }
+                        return res;
+                    })()
+                },
+                {
+                    show: false,
+                    gridIndex: 0,
+                    type: 'category',
+                    boundaryGap: false,
+                    data: (function () {
+                        var res = [];
+                        var len = 30;
+                        while (len--) {
+                            res.push(30 - len - 1);
+                        }
+                        return res;
+                    })()
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                    gridIndex: 0,
+                    scale: true,
+                    splitLine: {
+                        show: false
+                    },
+                    name: 'Pallet',
+                    max: 100,
+                    min: 0,
+                },
+                {
+                    type: 'value',
+                    gridIndex: 0,
+                    scale: true,
+                    splitLine: {
+                        show: false
+                    },
+                    name: 'Turnoverbox',
+                    max: 500,
+                    min: 0,
+                }
+            ],
+            series: [
+                {
+                    name: 'in Use Pallet',
+                    type: 'line',
+                    xAxisIndex: 1,
+                    yAxisIndex: 1,
+                    data: (function () {
+                        var res = [];
+                        var len = 30;
+                        while (len--) {
+                            res.push(Math.round(Math.random() * 100 + 320).toFixed(0));
+                        }
+                        return res;
+                    })()
+                },
+                {
+                    name: 'in Use Tb',
+                    type: 'line',
+                    stack: 1,
+                    color: '',
+                    areaStyle: { normal: {} },
+                    data: (function () {
+                        var res = [];
+                        var len = 0;
+                        while (len < 30) {
+                            res.push((Math.random() * 10 + 50).toFixed(0));
+                            len++;
+                        }
+                        return res;
+                    })()
+                },
+                {
+                    name: 'Broken Tb',
+                    type: 'line',
+                    stack: 1,
+                    areaStyle: {
+                        normal: {
+                            color: '#FA5858'
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            lineStyle: {
+                                color: '#FA5858'
+                            }
+                        }
+                    },
+                    data: (function () {
+                        var res = [];
+                        var len = 0;
+                        while (len < 30) {
+                            res.push((Math.random() * 1 + 15).toFixed(0));
+                            len++;
+                        }
+                        return res;
+                    })()
+                }
+
+            ]
+        };
+
+        myChart1.count = 30;
+        setInterval(function () {
+            axisData = (new Date()).toLocaleTimeString().replace(/^\D*/, '');
+
+            var data0 = option0.series[0].data;
+            var data1 = option0.series[1].data;
+            var data2 = option0.series[2].data;
+            data0.shift();
+            data0.push(Math.round(Math.random() * 100 + 320).toFixed(0));
+            data1.shift();
+            data1.push((Math.random() * 10 + 54).toFixed(0));
+            data2.shift();
+            data2.push((Math.random() * 1 + 15).toFixed(0));
+
+            option0.xAxis[0].data.shift();
+            option0.xAxis[0].data.push(axisData);
+            option0.xAxis[1].data.shift();
+            option0.xAxis[1].data.push(myChart1.count++);
+            myChart1.setOption(option0);
+        }, 1500);
+        // window.onresize = myChart.resize;
+
+
+
+
+        var myChart2 = echarts.init(document.getElementById('main1'));
+
+        option1 = {
+            grid: {
+                left: '33',
+                right: '43',
+                bottom: '20',
+                top: '30'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross',
+                    label: {
+                        backgroundColor: '#283b56'
+                    }
+                }
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    dataView: { readOnly: false },
+                }
+            },
+            dataZoom: {
+                show: false,
+                start: 0,
+                end: 100
+            },
+            xAxis: [
+                {
+                    show: false,
+                    gridIndex: 0,
+                    type: 'category',
+                    boundaryGap: true,
+                    axisLine: { onZero: false },
+                    boundaryGap: false,
+                    data: (function () {
+                        var now = new Date();
+                        var res = [];
+                        var len = 30;
+                        while (len--) {
+                            res.unshift(now.toLocaleTimeString().replace(/^\D*/, ''));
+                            now = new Date(now - 2000);
+                        }
+                        return res;
+                    })()
+                },
+                {
+                    show: false,
+                    gridIndex: 0,
+                    type: 'category',
+                    boundaryGap: false,
+                    data: (function () {
+                        var res = [];
+                        var len = 30;
+                        while (len--) {
+                            res.push(30 - len - 1);
+                        }
+                        return res;
+                    })()
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                    gridIndex: 0,
+                    max: 250,
+                    min: 0,
+                    scale: true,
+                    splitLine: {
+                        show: false
+                    },
+                    name: 'Charge / $'
+                }
+            ],
+            series: [
+                {
+                    name: 'Charge / $',
+                    type: 'line',
+                    stack: 1,
+                    areaStyle: {
+                        normal: {
+                            color: '#088A68'
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            lineStyle: {
+                                color: '#088A68'
+                            }
+                        }
+                    },
+                    data: (function () {
+                        var res = [];
+                        var len = 0;
+                        while (len < 30) {
+                            res.push((Math.random() * 10 + 50).toFixed(0) * preis);
+                            len++;
+                        }
+                        return res;
+                    })()
+                }
+            ]
+        };
+
+        myChart2.count = 30;
+        setInterval(function () {
+            axisData = (new Date()).toLocaleTimeString().replace(/^\D*/, '');
+
+            var data0 = option1.series[0].data;
+            data0.shift();
+            data0.push((Math.random() * 10 + 50).toFixed(0) * preis);
+
+            option1.xAxis[0].data.shift();
+            option1.xAxis[0].data.push(axisData);
+            option1.xAxis[1].data.shift();
+            option1.xAxis[1].data.push(myChart2.count++);
+            myChart2.setOption(option1);
+        }, 1500);
+        //window.onresize = myChart2.resize;
+
+        function change1() {
+            myChart2.dispose();
+
+            alert("Credit Level I Preis" + "...." + BASISc1.toFixed(2) +
+                "Strategy1" + "...." + PREIS3.toFixed(2) +
+                "Strategy2" + "...." + PREIS2.toFixed(2) +
+                "Strategy3" + "...." + PREIS1.toFixed(2));
+
+            var myChart3 = echarts.init(document.getElementById('main1'));
+            option2 = {
+                grid: {
+                    left: '33',
+                    right: '43',
+                    bottom: '20',
+                    top: '30'
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'cross',
+                        label: {
+                            backgroundColor: '#283b56'
+                        }
+                    }
+                },
+                toolbox: {
+                    show: true,
+                    feature: {
+                        dataView: { readOnly: false },
+                    }
+                },
+                dataZoom: {
+                    show: false,
+                    start: 0,
+                    end: 100
+                },
+                xAxis: [
+                    {
+                        show: false,
+                        gridIndex: 0,
+                        type: 'category',
+                        boundaryGap: true,
+                        axisLine: { onZero: false },
+                        boundaryGap: false,
+                        data: (function () {
+                            var now = new Date();
+                            var res = [];
+                            var len = 30;
+                            while (len--) {
+                                res.unshift(now.toLocaleTimeString().replace(/^\D*/, ''));
+                                now = new Date(now - 2000);
+                            }
+                            return res;
+                        })()
+                    },
+                    {
+                        show: false,
+                        gridIndex: 0,
+                        type: 'category',
+                        boundaryGap: false,
+                        data: (function () {
+                            var res = [];
+                            var len = 30;
+                            while (len--) {
+                                res.push(30 - len - 1);
+                            }
+                            return res;
+                        })()
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value',
+                        gridIndex: 0,
+                        max: 250,
+                        min: 0,
+                        scale: true,
+                        splitLine: {
+                            show: false
+                        },
+                        name: 'Charge / $'
+                    }
+                ],
+                series: [
+                    {
+                        name: 'Charge / $',
+                        type: 'line',
+                        stack: 1,
+                        areaStyle: {
+                            normal: {
+                                color: '#088A68'
+                            }
+                        },
+                        itemStyle: {
+                            normal: {
+                                lineStyle: {
+                                    color: '#088A68'
+                                }
+                            }
+                        },
+                        data: (function () {
+                            var res = [];
+                            var len = 0;
+                            while (len < 30) {
+                                res.push((Math.random() * 10 + 50).toFixed(0) * preis02);
+                                len++;
+                            }
+                            return res;
+                        })()
+                    },
+                    {
+                        name: 'Add Fee',
+                        type: 'line',
+                        stack: 1,
+                        areaStyle: {
+                            normal: {
+                                color: '#0B3B2E'
+                            }
+                        },
+                        itemStyle: {
+                            normal: {
+                                lineStyle: {
+                                    color: '#0B3B2E'
+                                }
+                            }
+                        },
+                        data: (function () {
+                            var res = [];
+                            var len = 0;
+                            while (len < 30) {
+                                res.push((Math.random() * 10 + 50).toFixed(0) * (preis02 - preis00));
+                                len++;
+                            }
+                            return res;
+                        })()
+                    }
+                ]
+            };
+
+            myChart3.count = 30;
+            setInterval(function () {
+                axisData = (new Date()).toLocaleTimeString().replace(/^\D*/, '');
+
+                var data0 = option2.series[0].data;
+                var data1 = option2.series[1].data;
+
+                data0.shift();
+                data0.push((Math.random() * 10 + 50).toFixed(0) * preis02);
+                data1.shift();
+                data1.push((Math.random() * 10 + 50).toFixed(0) * (preis02 - preis00));
+                option2.xAxis[0].data.shift();
+                option2.xAxis[0].data.push(axisData);
+                option2.xAxis[1].data.shift();
+                option2.xAxis[1].data.push(myChart3.count++);
+                myChart3.setOption(option2);
+            }, 1500);
+        }
+
+        function calculate1(A, B) {
+            var Y;
+            Y = A * Math.pow(0.5, B) + 2 + A / 10;
+            return Y;
+        }
+
+        function calculate2(A, B) {
+            var Y;
+            Y = A * Math.pow(0.6667, B) + 2 + A / 10 + 0.3 * (Math.pow(0.2, B) - 1);
+            return Y;
+        }
+
+        function calculate3(A, B) {
+            var Y;
+            Y = A * Math.pow(0.6667, B) + 2 + A / 10 + 0.15 * (Math.pow(0.2, A * 100) - 1);
+            return Y;
+        }
+
+        function calculate4(A, B) {
+            var Y;
+            Y = A * Math.pow(0.6667, B) + 2 + A / 10 - 0.20 * (Math.pow(0.2, A * 100) - 1);
+            return Y;
+        } 
+    </script>
+    <script></script>
+
+} 

@@ -1,0 +1,461 @@
+﻿@model Connecting.Models.sqlview
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>IoT Solution</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+    <link href="../../plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="../../plugins/node-waves/waves.css" rel="stylesheet" />
+    <link href="../../plugins/animate-css/animate.css" rel="stylesheet" />
+    <link href="../../plugins/morrisjs/morris.css" rel="stylesheet" />
+    <link href="../../css/style.css" rel="stylesheet">
+    <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="../../css/themes/all-themes.css" rel="stylesheet" />
+    <style type="text/css">
+        body, html, #allmap {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            margin: 0;
+            font-family: "微软雅黑";
+        }
+    </style>
+    <script type="text/javascript"
+            src="http://api.map.baidu.com/api?v=2.0&ak=ynXgni7si1bzX9kPMxnU2G0xr3giBSoB"></script>
+</head>
+<body class="theme-teal">
+
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <div class="search-icon">
+            <i class="material-icons">search</i>
+        </div>
+        <input type="text" placeholder="START TYPING...">
+        <div class="close-search">
+            <i class="material-icons">close</i>
+        </div>
+    </div>
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+                <a href="javascript:void(0);" class="bars"></a>
+                <a class="navbar-brand" href="http://connecting20180812.chinacloudsites.cn" style="font-size:24px">Turnover Management Cloud</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- Call Search -->
+                    <li><a href="javascript:void(0);" class="js-search" data-close="true"><i class="material-icons">search</i></a></li>
+                    <!-- #END# Call Search -->
+                    <!-- Notifications -->
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                            <i class="material-icons">notifications</i>
+                            <span class="label label-count">6</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">NOTIFICATIONS</li>
+                            <li class="body">
+                                <ul class="menu">
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <div class="icon-circle bg-light-green">
+                                                <i class="material-icons">person_add</i>
+                                            </div>
+                                            <div class="menu-info">
+                                                <h4>12 new members joined</h4>
+                                                <p>
+                                                    <i class="material-icons">access_time</i> 14 mins ago
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <div class="icon-circle bg-teal">
+                                                <i class="material-icons">delete_forever</i>
+                                            </div>
+                                            <div class="menu-info">
+                                                <h4><b></b>P002 pallet broken</h4>
+                                                <p>
+                                                    <i class="material-icons">access_time</i> 3 hours ago
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <div class="icon-circle bg-orange">
+                                                <i class="material-icons">mode_edit</i>
+                                            </div>
+                                            <div class="menu-info">
+                                                <h4><b></b>dilivery delay</h4>
+                                                <p>
+                                                    <i class="material-icons">access_time</i> 4 hours ago
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <div class="icon-circle bg-teal">
+                                                <i class="material-icons">comment</i>
+                                            </div>
+                                            <div class="menu-info">
+                                                <h4><b></b>T001 turnoverbox in use</h4>
+                                                <p>
+                                                    <i class="material-icons">access_time</i> 5 hours ago
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <div class="icon-circle bg-light-green">
+                                                <i class="material-icons">cached</i>
+                                            </div>
+                                            <div class="menu-info">
+                                                <h4><b>BOSCH</b> updated status</h4>
+                                                <p>
+                                                    <i class="material-icons">access_time</i> 6 hours ago
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <div class="icon-circle bg-purple">
+                                                <i class="material-icons">settings</i>
+                                            </div>
+                                            <div class="menu-info">
+                                                <h4>Settings updated</h4>
+                                                <p>
+                                                    <i class="material-icons">access_time</i> Yesterday
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="footer">
+                                <a href="javascript:void(0);">View All Notifications</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- #END# Notifications -->
+                    <!-- Tasks -->
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                            <i class="material-icons">flag</i>
+                            <span class="label label-count">5</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">TASKS</li>
+                            <li class="body">
+                                <ul class="menu tasks">
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <h4>
+                                                Repair pallet P001
+                                                <small>32%</small>
+                                            </h4>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-pink" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 32%">
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <h4>
+                                                Turnoverbox dispatching in areaII
+                                                <small>45%</small>
+                                            </h4>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-cyan" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <h4>
+                                                Pallet dispatching in areaI
+                                                <small>54%</small>
+                                            </h4>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-teal" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 54%">
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <h4>
+                                                Solve transportation issue
+                                                <small>65%</small>
+                                            </h4>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-orange" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 65%">
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <h4>
+                                                2 suppliers approval
+                                                <small>92%</small>
+                                            </h4>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-purple" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 92%">
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="footer">
+                                <a href="javascript:void(0);">View All Tasks</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- #END# Tasks -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section>
+        <!-- Left Sidebar -->
+        <aside id="leftsidebar" class="sidebar">
+            <!-- User Info -->
+            <div class="user-info">
+                <div>
+                    <img src="../../images/user3.png" width="48" height="80" alt="User" />
+                </div>
+                <div class="info-container">
+                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">admin</div>
+                    <div class="email">Green@IoTsolution.com</div>
+                    <div class="btn-group user-helper-dropdown">
+                        <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+                        <ul class="dropdown-menu pull-right js-modal-buttons">
+                            <li><a data-toggle="modal" data-target="#defaultModal" class="btn waves-effect" href="javascript:void(0);"><i class="material-icons">blur_on</i>Scan</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="javascript:void(0);"><i class="material-icons">blur_on</i>In use</a></li>
+                            <li><a href="javascript:void(0);"><i class="material-icons">blur_on</i>Free</a></li>
+                            <li><a href="javascript:void(0);"><i class="material-icons">blur_on</i>Broken</a></li>
+                            <li><a href="javascript:void(0);"><i class="material-icons">blur_on</i>Over cyclelife</a></li>
+                            <li><a href="javascript:void(0);"><i class="material-icons">blur_on</i>Repairing</a></li>
+                            <li role="separator" class="divider"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- #User Info -->
+            <div class="menu">
+                <ul class="list">
+                    <li class="header">MAIN NAVIGATION</li>
+                    <li class="active">
+                        <a href="http://connecting20180812.chinacloudsites.cn">
+                            <i class="material-icons">home</i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">widgets</i>
+                            <span>Turnover Box</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="http://connecting20180812.chinacloudsites.cn/TurnoverBoxes/index">Index</a>
+                            </li>
+                            <li>
+                                <a href="http://connecting20180812.chinacloudsites.cn/TurnoverBoxes/Create">Create</a>
+                            </li>
+                            <li>
+                                <a href="http://connecting20180812.chinacloudsites.cn/TurnoverBoxes/Distribution">Distribution</a>
+                            </li>
+                            <li>
+                                <a data-toggle="modal" data-target="#defaultModal">Scan</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">tablet</i>
+                            <span>Pallet</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="http://connecting20180812.chinacloudsites.cn/Pallets/index">Index</a>
+                            </li>
+                            <li>
+                                <a href="http://connecting20180812.chinacloudsites.cn/Pallets/Create">Create</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">local_shipping</i>
+                            <span>Truck</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="http://connecting20180812.chinacloudsites.cn/Cars/index">Index</a>
+                            </li>
+                            <li>
+                                <a href="http://connecting20180812.chinacloudsites.cn/Cars/Create">Create</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="http://connecting20180812.chinacloudsites.cn/Pools/Index">
+                            <i class="material-icons">business</i>
+                            <span>Resource Pool</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">people_outline</i>
+                            <span>Suppliers&Credit</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="http://connecting20180812.chinacloudsites.cn/TurnoverBoxes/credit">User Credit Classification</a>
+                            </li>
+                            <li>
+                                <a href="http://connecting20180812.chinacloudsites.cn/TurnoverBoxes/fee">Charge</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">pie_chart</i>
+                            <span>Machine Learning</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="http://connecting20180812.chinacloudsites.cn/TurnoverBoxes/WHplanning">Cloud Storage Planning</a>
+                            </li>
+                            <li>
+                                <a href="http://connecting20180812.chinacloudsites.cn/TurnoverBoxes/TSP">Path Planning</a>
+                            </li>
+                            <li>
+                                <a href="http://connecting20180812.chinacloudsites.cn/TurnoverBoxes/credit">Credit</a>
+                            </li>
+                            <li>
+                                <a href="http://connecting20180812.chinacloudsites.cn/TurnoverBoxes/fee">Fee</a>
+                            </li>
+                            <li>
+                                <a href="http://connecting20180812.chinacloudsites.cn/Comps/Index">Predition</a>
+                            </li>
+                            <li>
+                                <a href="http://connecting20180812.chinacloudsites.cn/Pools/Index">Dispatching</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">sync</i>
+                            <span>Path Planning</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="http://connecting20180812.chinacloudsites.cn/Cars/onepoint/C001">Navigation</a>
+                            </li>
+                            <li>
+                                <a href="http://connecting20180812.chinacloudsites.cn/TurnoverBoxes/TSP">Path Planning</a>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- Footer -->
+            <div class="legal">
+                <div class="copyright">
+                    &copy; 2018 <a href="javascript:void(0);">IoT Solution</a>
+                </div>
+                <div class="version">
+                    <b>Version: </b> V1.2
+                </div>
+            </div>
+            <!-- #Footer -->
+        </aside>
+    </section>
+
+    <!-- #END# Search Bar -->
+    <!-- #END# Left Sidebar -->
+
+    <div id="allmap"></div>
+
+    <script type="text/javascript">
+        //121.360938,31.235822
+        var x = 121.360938;
+        var y = 31.235822; 
+        console.log(x);
+
+        var map = new BMap.Map("allmap");
+        map.enableScrollWheelZoom(true);
+        var point = new BMap.Point(x, y);
+        map.centerAndZoom(point, 16);
+        var marker = new BMap.Marker(point);  // 创建标注
+        map.addOverlay(marker);               // 将标注添加到地图中
+        marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+    </script>
+
+</body>
+</html>
+
+<!-- Jquery Core Js -->
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap Core Js -->
+<script src="../../plugins/bootstrap/js/bootstrap.js"></script>
+<!-- Select Plugin Js -->
+<script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
+<!-- Slimscroll Plugin Js -->
+<script src="../../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+<!-- Waves Effect Plugin Js -->
+<script src="../../plugins/node-waves/waves.js"></script>
+<!-- Jquery CountTo Plugin Js -->
+<script src="../../plugins/jquery-countto/jquery.countTo.js"></script>
+<!-- Morris Plugin Js -->
+<script src="../../plugins/raphael/raphael.min.js"></script>
+<script src="../../plugins/morrisjs/morris.js"></script>
+<!-- ChartJs -->
+<!-- Flot Charts Plugin Js -->
+<!-- Sparkline Chart Plugin Js -->
+<!-- Custom Js -->
+<script src="../../js/admin.js"></script>
+<script src="../../js/pages/index.js"></script>
+<script src="../../js/pages/ui/modals.js"></script>
+<!-- Demo Js -->
+<script src="../../js/demo.js"></script>
+
+<!-- Jquery DataTable Plugin Js -->
+<!-- Editable Table Plugin Js -->
+<!-- Bootstrap Notify Plugin Js -->
+<!-- qrcode -->
+<!-- ec -->
+<script src="../../Scripts/echarts/echarts.js"></script>
+<script src="../../Scripts/echarts/echarts.min.js"></script>
+<script src="../../Scripts/echarts/world.js"></script>
+<script src="../../Scripts/echarts/bmap.min.js"></script>
+
+
+<!-- Autosize Plugin Js -->
+<script src="../../plugins/autosize/autosize.js"></script>
+<!-- Moment Plugin Js --> 

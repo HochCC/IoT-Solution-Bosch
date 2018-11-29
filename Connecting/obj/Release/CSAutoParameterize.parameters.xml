@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." defaultValue="Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\aspnet-Connecting-20180705083034.mdf;Initial Catalog=aspnet-Connecting-20180705083034;Integrated Security=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\I351746\\source\\ConnectingCLOUD\\Connecting\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="MVCTurnoverbox-Web.config Connection String" description="MVCTurnoverbox Connection String used in web.config by the application to access the database." defaultValue="data source=PVGN56587491A\SQLEXPRESS;initial catalog=IoT;persist security info=True;user id=sa;password=WXJWXJwang123;MultipleActiveResultSets=True;App=EntityFramework" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\I351746\\source\\ConnectingCLOUD\\Connecting\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='MVCTurnoverbox']/@connectionString" />
+  </parameter>
+  <parameter name="MVCPallet-Web.config Connection String" description="MVCPallet Connection String used in web.config by the application to access the database." defaultValue="data source=PVGN56587491A\SQLEXPRESS;initial catalog=IoT;persist security info=True;user id=sa;password=WXJWXJwang123;multipleactiveresultsets=True;application name=EntityFramework" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\I351746\\source\\ConnectingCLOUD\\Connecting\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='MVCPallet']/@connectionString" />
+  </parameter>
+  <parameter name="MVCCar-Web.config Connection String" description="MVCCar Connection String used in web.config by the application to access the database." defaultValue="data source=PVGN56587491A\SQLEXPRESS;initial catalog=IoT;persist security info=True;user id=sa;password=WXJWXJwang123;multipleactiveresultsets=True;application name=EntityFramework" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\I351746\\source\\ConnectingCLOUD\\Connecting\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='MVCCar']/@connectionString" />
+  </parameter>
+  <parameter name="MVCsqlview-Web.config Connection String" description="MVCsqlview Connection String used in web.config by the application to access the database." defaultValue="data source=PVGN56587491A\SQLEXPRESS;initial catalog=IoT;user id=sa;password=WXJWXJwang123;MultipleActiveResultSets=True;App=EntityFramework" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\I351746\\source\\ConnectingCLOUD\\Connecting\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='MVCsqlview']/@connectionString" />
+  </parameter>
+  <parameter name="MVCTurnoverbox0-Web.config Connection String" description="MVCTurnoverbox0 Connection String used in web.config by the application to access the database." defaultValue="data source=PVGN56587491A\SQLEXPRESS;initial catalog=IoT;user id=sa;password=WXJWXJwang123;multipleactiveresultsets=True;application name=EntityFramework" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\I351746\\source\\ConnectingCLOUD\\Connecting\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='MVCTurnoverbox0']/@connectionString" />
+  </parameter>
+  <parameter name="MVC-Web.config Connection String" description="MVC Connection String used in web.config by the application to access the database." defaultValue="data source=PVGN56587491A\SQLEXPRESS;initial catalog=IoT;user id=sa;password=WXJWXJwang123;MultipleActiveResultSets=True;App=EntityFramework" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\I351746\\source\\ConnectingCLOUD\\Connecting\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='MVC']/@connectionString" />
+  </parameter>
+  <parameter name="CLOUD-Web.config Connection String" description="CLOUD Connection String used in web.config by the application to access the database." defaultValue="data source=connecting20180720071153dbserver.database.chinacloudapi.cn;initial catalog=Connecting20180720071153_db;user id=sqladmin;password=WXJWXJwang123;MultipleActiveResultSets=True;App=EntityFramework" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\I351746\\source\\ConnectingCLOUD\\Connecting\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='CLOUD']/@connectionString" />
+  </parameter>
+</parameters>
