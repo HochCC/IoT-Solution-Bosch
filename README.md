@@ -10,3 +10,5 @@ In order to reuse and recycle the parcels in Bosch supply chain with low cost an
   <li>Use machine learning algorithms to implement scheduling, site selection, forecasting, credit rating, etc. </li>
   <li>Recyclable modular turnoverbox design </li>
 </ol>
+<embed src="https://v.youku.com/v_show/id_XMzc3OTg3NTcyOA==.html"  width="480" height="400" type="application/x-shockwave-flash">
+</embed>
