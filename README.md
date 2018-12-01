@@ -1,6 +1,6 @@
 # IoT-Solution-Bosch
 
-IoT Solution: 1st place </br>
+2018 BOSCH CHINA IoT HACKATHON: 1st place </br>
 This is the IoT solution winning the 1st place of 2018 BOSCH CHINA IoT HACKATHON.</br>
 In order to reuse and recycle the parcels in Bosch supply chain with low cost and high efficiency, we develop a IoT solution, a cloud platform using MVC design pattern deployed in AZURE. This solution is mainly developed in 3 days in the HACHATHON, so there are some places where the code is not standardized and organized well enough.
 
