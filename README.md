@@ -1,6 +1,6 @@
 # IoT-Solution-Bosch
 
-IoT Solution: 1st place
+IoT Solution: 1st place </br>
 This is the IoT solution winning the 1st place of 2018 BOSCH CHINA IoT HACKATHON.</br>
 In order to reuse and recycle the parcels in Bosch supply chain with low cost and high efficiency, we develop a IoT solution, a cloud platform using MVC design pattern deployed in AZURE. This solution is mainly developed in 3 days in the HACHATHON, so there are some places where the code is not standardized and organized well enough.
 
@@ -14,5 +14,15 @@ In order to reuse and recycle the parcels in Bosch supply chain with low cost an
 <b>You can have a overview about our IoT solution in this demo video </b></br>
 [IoT Solution demo](https://v.youku.com/v_show/id_XMzc3OTg3NTcyOA==.html)
 
+Below is the main process of manufacturing supply chain based on IoT recirculation model
 ![Image text](https://github.com/XinjieInformatik/IoT-Solution-Bosch/blob/master/pic/business_process.PNG)
+This is the cascade mode, unitized logistics for turnover box, pallet and truck.
+![Image text](https://github.com/XinjieInformatik/IoT-Solution-Bosch/blob/master/pic/cascade.PNG)
+Information flow
+![Image text](https://github.com/XinjieInformatik/IoT-Solution-Bosch/blob/master/pic/structure.PNG)
+Demo picture to explain how we realized the data transform in AZURE.
+![Image text](https://github.com/XinjieInformatik/IoT-Solution-Bosch/blob/master/pic/inforflow.PNG)
+Architecture
+![Image text](https://github.com/XinjieInformatik/IoT-Solution-Bosch/blob/master/pic/Architecture.PNG)
+
 
