@@ -14,10 +14,10 @@ In order to reuse and recycle the parcels in Bosch supply chain with low cost an
 <b>You can have a overview about our IoT solution in this demo video </b></br>
 [IoT Solution demo](https://www.bilibili.com/video/av37182454/)
 
-Below is the main process of manufacturing supply chain based on IoT recirculation model
-![Image text](https://github.com/XinjieInformatik/IoT-Solution-Bosch/blob/master/pic/business_process.PNG)
+Below is the main process of manufacturing supply chain based on IoT recirculation model.
+<img src="https://github.com/XinjieInformatik/IoT-Solution-Bosch/blob/master/pic/business_process.PNG" alt="business_process"/> 
 This is the cascade mode, unitized logistics for turnover box, pallet and truck.
-![Image text](https://github.com/XinjieInformatik/IoT-Solution-Bosch/blob/master/pic/cascade.PNG)
+<img src="https://github.com/XinjieInformatik/IoT-Solution-Bosch/blob/master/pic/cascade.PNG" width="500" align="center" alt="cascade"/> 
 Information flow
 ![Image text](https://github.com/XinjieInformatik/IoT-Solution-Bosch/blob/master/pic/structure.PNG)
 Demo picture to explain how we realized the data transform in AZURE.
