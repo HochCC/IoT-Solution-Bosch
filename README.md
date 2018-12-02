@@ -21,7 +21,7 @@ This is the cascade mode, unitized logistics for turnover box, pallet and truck.
 Information flow</br>
 <img src="https://github.com/XinjieInformatik/IoT-Solution-Bosch/blob/master/pic/structure.PNG" width="500" alt="structure"/> </br></br></br> 
 Demo picture to explain how we realized the data transform in AZURE.</br>
-<img src="https://github.com/XinjieInformatik/IoT-Solution-Bosch/blob/master/pic/inforflow.PNG" width="900" alt="inforflow"/> </br></br></br>  
+<img src="https://github.com/XinjieInformatik/IoT-Solution-Bosch/blob/master/pic/inforflow.PNG" width="800" alt="inforflow"/> </br></br></br>  
 Architecture</br>
 <img src="https://github.com/XinjieInformatik/IoT-Solution-Bosch/blob/master/pic/Architecture.PNG" width="700" alt="Architecture"/> </br></br></br> 
 
