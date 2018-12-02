@@ -15,14 +15,14 @@ In order to reuse and recycle the parcels in Bosch supply chain with low cost an
 [IoT Solution demo](https://www.bilibili.com/video/av37182454/)
 
 Below is the main process of manufacturing supply chain based on IoT recirculation model.
-<img src="https://github.com/XinjieInformatik/IoT-Solution-Bosch/blob/master/pic/business_process.PNG" alt="business_process"/> 
+<img src="https://github.com/XinjieInformatik/IoT-Solution-Bosch/blob/master/pic/business_process.PNG" alt="business_process"/> </br>
 This is the cascade mode, unitized logistics for turnover box, pallet and truck.
-<img src="https://github.com/XinjieInformatik/IoT-Solution-Bosch/blob/master/pic/cascade.PNG" width="500" align="center" alt="cascade"/> 
+<img src="https://github.com/XinjieInformatik/IoT-Solution-Bosch/blob/master/pic/cascade.PNG" width="500" alt="cascade"/> </br>
 Information flow
-![Image text](https://github.com/XinjieInformatik/IoT-Solution-Bosch/blob/master/pic/structure.PNG)
+<img src="https://github.com/XinjieInformatik/IoT-Solution-Bosch/blob/master/pic/structure.PNG" width="700" alt="structure"/> </br> 
 Demo picture to explain how we realized the data transform in AZURE.
-![Image text](https://github.com/XinjieInformatik/IoT-Solution-Bosch/blob/master/pic/inforflow.PNG)
+<img src="https://github.com/XinjieInformatik/IoT-Solution-Bosch/blob/master/pic/inforflow.PNG" width="700" alt="inforflow"/> </br>  
 Architecture
-![Image text](https://github.com/XinjieInformatik/IoT-Solution-Bosch/blob/master/pic/Architecture.PNG)
+<img src="https://github.com/XinjieInformatik/IoT-Solution-Bosch/blob/master/pic/Architecture.PNG" width="700" alt="Architecture"/> </br> 
 
 
